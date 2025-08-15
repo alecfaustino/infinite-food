@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import axios, { axiosError } from "axios";
+import axios from "axios";
 import Cards from "./components/Cards";
 
 function App() {
