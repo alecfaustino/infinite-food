@@ -1,13 +1,13 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import "../styles/Cards.css";
 
 const Cards = () => {
   const [info, setInfo] = useState([]);
   const loadingRef = useRef(false);
+  const lastCallRef = useRef(0);
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
-
-  // functions
 
   // fetching the api to load 10
   const fetchRecipe = async () => {
@@ -24,6 +24,9 @@ const Cards = () => {
 
   useEffect(() => {
     const handleScroll = () => {
+      const now = Date.now();
+      // throttle to prevent loading content too quickly
+      if (now - lastCallRef.current < 200) return;
       const scrollTop = window.scrollY;
       const windowHeight = window.innerHeight;
       const fullHeight = document.documentElement.scrollHeight;
@@ -44,20 +47,13 @@ const Cards = () => {
     };
   }, []);
 
-  const infiniteScroll = () => {
-    // how far down the page is loaded at the moment
-    // the || is for older browsers that store the scroll position on <body>
-    const scrollTop =
-      document.documentElement.scrollTop || document.body.scrollTop;
-  };
-
   return (
     <>
-      <div>
+      <div className="cards-container">
         {info.map((food) => {
           const altText = `image of ${food.title}`;
           return (
-            <div key={food.id}>
+            <div className="card" key={food.id}>
               <img alt={altText} src={food.image} />
               <p>{food.title}</p>
             </div>

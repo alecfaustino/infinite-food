@@ -1,0 +1,11 @@
+.app-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* middle column is twice as wide */
+  gap: 16px;
+  padding: 16px;
+}
+
+/* optional styling for child columns */
+.app-container > * {
+  border-radius: 12px;
+}
