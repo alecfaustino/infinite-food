@@ -1,7 +1,7 @@
 import React from "react";
 
-const RightColumn = () => {
-  return <div>Temp</div>;
+const RightColumn = ({ className }) => {
+  return <div className={className}>Temp</div>;
 };
 
 export default RightColumn;

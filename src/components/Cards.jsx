@@ -56,6 +56,8 @@ const Cards = () => {
             <div className="card" key={food.id}>
               <img alt={altText} src={food.image} />
               <p>{food.title}</p>
+              <p>Ready in {food.readyInMinutes} minutes</p>
+              <p>Servings: {food.servings} servings</p>
             </div>
           );
         })}

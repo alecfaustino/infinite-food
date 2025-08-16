@@ -1,7 +1,7 @@
 import React from "react";
 
-const Filters = () => {
-  return <div>Temp</div>;
+const Filters = ({ className }) => {
+  return <div className={className}>Temp</div>;
 };
 
 export default Filters;

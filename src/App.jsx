@@ -8,9 +8,9 @@ import RightColumn from "./components/RightColumn";
 function App() {
   return (
     <div className="app-container">
-      <Filters />
+      <Filters className="left-column" />
       <Cards />
-      <RightColumn />
+      <RightColumn className="right-column" />
     </div>
   );
 }

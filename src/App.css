@@ -9,3 +9,15 @@
 .app-container > * {
   border-radius: 12px;
 }
+
+/* on mobile, just a single column (the cards) */
+@media (max-width: 1024px) {
+  .app-container {
+    grid-template-columns: 1fr; /* single column layout */
+  }
+
+    .left-column,
+    .right-column {
+    display: none; 
+  }
+}
