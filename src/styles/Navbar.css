@@ -8,11 +8,15 @@
   padding: 8px;
   margin: 0;
   z-index: 100;
-  background-color: white;
+  background-color: #1C1C1C;
 }
 
 .slogan {
   /* this margin here is because the navbar has some -32 positiom */
   margin-right: 1rem;
   display: flex;
+}
+
+.navbar h1, h2 {
+  color: #FFC107;
 }
