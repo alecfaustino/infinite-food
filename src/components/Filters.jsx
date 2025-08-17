@@ -2,21 +2,40 @@ import { useState } from "react";
 import { cuisines, diets, intolerances } from "../data/filterOptions";
 import "../styles/Filters.css";
 
-const Filters = ({ className }) => {
-  const [selectedCuisine, setSelectedCuisine] = useState("");
-  const [selectedDiets, setSelectedDiets] = useState([]);
-  const [selectedIntolerances, setSelectedIntolerances] = useState([]);
-  const [proteinRange, setProteinRange] = useState([0, 250]);
-  const [calorieRange, setCalorieRange] = useState([0, 1000]);
-  const [carbRange, setCarbRange] = useState([0, 250]);
-  const [fatRange, setFatRange] = useState([0, 250]);
+const Filters = ({ className, setFilters, filters, handleSearch }) => {
+  const handleCuisineChange = (e) => {
+    setFilters((prev) => ({ ...prev, cuisine: e.target.value }));
+  };
 
-  const toggleSelection = (value, selectedArray, setSelectedArray) => {
-    if (selectedArray.includes(value)) {
-      setSelectedArray(selectedArray.filter((item) => item !== value));
-    } else {
-      setSelectedArray([...selectedArray, value]);
-    }
+  // handlers for multi-select checkboxes
+  const toggleArrayFilter = (key, value) => {
+    setFilters((prev) => {
+      const array = prev[key] || [];
+      const updated = array.includes(value)
+        ? array.filter((v) => v !== value)
+        : [...array, value];
+      return { ...prev, [key]: updated };
+    });
+  };
+
+  // handler for maxProtein slider
+  const handleMaxCalorieChange = (e) => {
+    setFilters((prev) => ({ ...prev, maxCalories: Number(e.target.value) }));
+  };
+
+  // handler for maxProtein slider
+  const handleMaxProteinChange = (e) => {
+    setFilters((prev) => ({ ...prev, maxProtein: Number(e.target.value) }));
+  };
+
+  // handler for maxProtein slider
+  const handleMaxCarbsChange = (e) => {
+    setFilters((prev) => ({ ...prev, maxCarbs: Number(e.target.value) }));
+  };
+
+  // handler for maxProtein slider
+  const handleMaxFatsChange = (e) => {
+    setFilters((prev) => ({ ...prev, maxFat: Number(e.target.value) }));
   };
 
   return (
@@ -26,8 +45,8 @@ const Filters = ({ className }) => {
       <label htmlFor="cuisine">Cuisine</label>
       <select
         id="cuisine"
-        value={selectedCuisine}
-        onChange={(e) => setSelectedCuisine(e.target.value)}>
+        value={filters.cuisine}
+        onChange={handleCuisineChange}>
         <option value="">Any</option>
         {cuisines.map((cuisine) => (
           <option key={cuisine} value={cuisine}>
@@ -42,10 +61,8 @@ const Filters = ({ className }) => {
           <input
             type="checkbox"
             id={`diet-${diet}`}
-            checked={selectedDiets.includes(diet)}
-            onChange={() =>
-              toggleSelection(diet, selectedDiets, setSelectedDiets)
-            }
+            checked={filters.diet?.includes(diet)}
+            onChange={() => toggleArrayFilter("diet", diet)}
           />
           <label htmlFor={`diet-${diet}`}>{diet}</label>
         </div>
@@ -57,14 +74,8 @@ const Filters = ({ className }) => {
           <input
             type="checkbox"
             id={`intolerance-${intolerance}`}
-            checked={selectedIntolerances.includes(intolerance)}
-            onChange={() =>
-              toggleSelection(
-                intolerance,
-                selectedIntolerances,
-                setSelectedIntolerances
-              )
-            }
+            checked={filters.intolerances?.includes(intolerance)}
+            onChange={() => toggleArrayFilter("intolerances", intolerance)}
           />
           <label htmlFor={`intolerance-${intolerance}`}>{intolerance}</label>
         </div>
@@ -77,12 +88,12 @@ const Filters = ({ className }) => {
           min={0}
           max={2000}
           step={1}
-          value={calorieRange[1]}
-          onChange={(e) => setCalorieRange([0, Number(e.target.value)])}
+          value={filters.maxCalories}
+          onChange={handleMaxCalorieChange}
         />
         <div className="macronutrient-values">
           <span>0g</span>
-          <span>{calorieRange[1]}g</span>
+          <span>{filters.maxCalories}g</span>
         </div>
       </div>
       <div className="macronutrient-slider">
@@ -92,12 +103,12 @@ const Filters = ({ className }) => {
           min={0}
           max={500}
           step={1}
-          value={proteinRange[1]}
-          onChange={(e) => setProteinRange([0, Number(e.target.value)])}
+          value={filters.maxProtein}
+          onChange={handleMaxProteinChange}
         />
         <div className="macronutrient-values">
           <span>0g</span>
-          <span>{proteinRange[1]}g</span>
+          <span>{filters.maxProtein}g</span>
         </div>
       </div>
       <div className="macronutrient-slider">
@@ -107,12 +118,12 @@ const Filters = ({ className }) => {
           min={0}
           max={500}
           step={1}
-          value={carbRange[1]}
-          onChange={(e) => setCarbRange([0, Number(e.target.value)])}
+          value={filters.maxCarbs}
+          onChange={handleMaxCarbsChange}
         />
         <div className="macronutrient-values">
           <span>0g</span>
-          <span>{carbRange[1]}g</span>
+          <span>{filters.maxCarbs}g</span>
         </div>
       </div>
       <div className="macronutrient-slider">
@@ -122,18 +133,18 @@ const Filters = ({ className }) => {
           min={0}
           max={500}
           step={1}
-          value={fatRange[1]}
-          onChange={(e) => setFatRange([0, Number(e.target.value)])}
+          value={filters.maxFat}
+          onChange={handleMaxFatsChange}
         />
         <div className="macronutrient-values">
           <span>0g</span>
-          <span>{fatRange[1]}g</span>
+          <span>{filters.maxFat}g</span>
         </div>
       </div>
 
       {/* Button to apply filters - but it's sticky */}
       <div className="filters-actions">
-        <button>Apply Filters</button>
+        <button onClick={handleSearch}>Apply Filters</button>
       </div>
     </div>
   );

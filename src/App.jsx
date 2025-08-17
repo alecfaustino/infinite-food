@@ -5,18 +5,27 @@ import Filters from "./components/Filters";
 import RightColumn from "./components/RightColumn";
 
 function App() {
+  const handleSearch = () => {
+    console.log("Searching with filters:", filters);
+    // TODO: Actually call the API with the filters
+  };
   const [filters, setFilters] = useState({
     cuisine: "",
     diet: [],
     intolerances: [],
-    maxCarbs: 500,
-    maxProtein: 500,
     maxCalories: 2000,
+    maxProtein: 500,
+    maxCarbs: 500,
     maxFat: 500,
   });
   return (
     <div className="app-container">
-      <Filters setFilters={setFilters} className="left-column" />
+      <Filters
+        setFilters={setFilters}
+        filters={filters}
+        className="left-column"
+        handleSearch={handleSearch}
+      />
       <Cards setFilters={setFilters} />
       <RightColumn className="right-column" />
     </div>
