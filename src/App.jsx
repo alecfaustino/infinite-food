@@ -5,9 +5,19 @@ import Filters from "./components/Filters";
 import RightColumn from "./components/RightColumn";
 
 function App() {
-  const handleSearch = () => {
-    console.log("Searching with filters:", filters);
-    // TODO: Actually call the API with the filters
+  const [recipes, setRecipes] = useState([]);
+  const handleSearch = async () => {
+    try {
+      const query = new URLSearchParams(filters).toString();
+      // TODO CHANGE THE LOCALHOST SO IT'S NOT HARDCODED - PUT INTO .ENV
+      const response = await fetch(
+        `http://localhost:8080/api/spoon/search?${query}`
+      );
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching recipes:", error);
+    }
   };
   const [filters, setFilters] = useState({
     cuisine: "",

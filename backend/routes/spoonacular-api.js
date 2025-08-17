@@ -55,6 +55,8 @@ router.get("/search", async (req, res) => {
         addRecipeInstructions: true,
         addRecipeNutrition: true,
         sort: "random",
+        instructionsRequired: true,
+        ...req.query,
       },
     });
     const data = response.data;
