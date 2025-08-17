@@ -44,6 +44,12 @@ router.get("/random10", async (req, res) => {
 
 // fetch with filters
 
-router.get("/search", async (req, res) => {});
+router.get("/search", async (req, res) => {
+  // add these params
+  // addRecipeInformation true
+  // addRecipeInstructions true
+  // addRecipeNutrion true
+  // sort "random"
+});
 
 export default router;

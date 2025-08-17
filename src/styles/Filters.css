@@ -44,3 +44,17 @@
   border-color: #0077ff;
   box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
 }
+
+.macronutrient-slider {
+  width: 250px;
+  padding: 10px;
+}
+
+.macronutrient-values {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 0.9rem;
+}
+
