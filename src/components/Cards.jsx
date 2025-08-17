@@ -18,6 +18,17 @@ const Cards = ({ activeFilters }) => {
         `${baseUrl}/api/spoon/search?${query}`
       );
       setInfo((prev) => [...prev, ...fetchResult.data.data.results]);
+      console.log(fetchResult.data.data);
+      // fetchResult.data.data.results is the base array we are looping through this. Let's call each instance "food"
+      // food.description or food.summary
+      // food.diets is another array
+      // food.cuisines is another array
+      // food.readyInMinutes
+      // food.servings
+      // food.nutrition.ingredients is an array of objects that contains id, name, amount, unit, and nutrients
+      // nutrients ^ is another array of objects that contains name (of the nutrient) amount, unit.
+      // we want Carbohydrates, Protein, Calories, Fats
+      // food.analyzedInsturctions is an array of objects containing name, and steps. Steps is an array of objects containing number (the step order), and step (which is the description of the step)
     } catch (error) {
       console.error(error);
     } finally {
