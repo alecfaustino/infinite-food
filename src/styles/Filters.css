@@ -1,39 +1,3 @@
-/* Headings */
-.filters h3 {
-  margin: 0 0 8px 0;
-  font-size: 18px;
-  color: #333;
-}
-
-/* Labels */
-.filters label {
-  font-weight: 500;
-  margin-bottom: 4px;
-  display: block;
-}
-
-/* Select dropdowns */
-.filters select {
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* Multiple selects */
-.filters select[multiple] {
-  height: 120px; 
-}
-
-/* focus styles */
-.filters select:focus {
-  outline: none;
-  border-color: #0077ff;
-  box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
-}
-
 .macronutrient-slider {
   width: 250px;
   padding: 10px;
