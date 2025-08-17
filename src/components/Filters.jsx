@@ -19,16 +19,6 @@ const Filters = ({ className }) => {
     }
   };
 
-  const handleMinChange = (e) => {
-    const newMin = Math.min(Number(e.target.value), proteinRange[1]);
-    setProteinRange([newMin, proteinRange[1]]);
-  };
-
-  const handleMaxChange = (e) => {
-    const newMax = Math.max(Number(e.target.value), proteinRange[0]);
-    setProteinRange([proteinRange[0], newMax]);
-  };
-
   return (
     <div className={className}>
       <h3>Search Filters</h3>
@@ -139,6 +129,11 @@ const Filters = ({ className }) => {
           <span>0g</span>
           <span>{fatRange[1]}g</span>
         </div>
+      </div>
+
+      {/* Button to apply filters - but it's sticky */}
+      <div className="filters-actions">
+        <button>Apply Filters</button>
       </div>
     </div>
   );

@@ -42,14 +42,28 @@ router.get("/random10", async (req, res) => {
   }
 });
 
-// fetch with filters
+// fetch with filters -- main use now
 
 router.get("/search", async (req, res) => {
-  // add these params
-  // addRecipeInformation true
-  // addRecipeInstructions true
-  // addRecipeNutrion true
-  // sort "random"
+  const apiKey = process.env.SPOON_API_KEY;
+  try {
+    const response = await axios.get(`${RECIPES_BASE_URL}/complexSearch`, {
+      params: {
+        apiKey,
+        number: 10,
+        addRecipeInformation: true,
+        addRecipeInstructions: true,
+        addRecipeNutrition: true,
+        sort: "random",
+      },
+    });
+    const data = response.data;
+
+    res.status(200).json({ message: "10 recipes fetched: ", data });
+  } catch (error) {
+    // TODO: TEMP CODE - REPLACE WITH MEANINGFUL ERROR
+    console.error(error);
+  }
 });
 
 export default router;

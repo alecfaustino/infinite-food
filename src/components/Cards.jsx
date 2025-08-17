@@ -13,8 +13,8 @@ const Cards = () => {
   const fetchRecipe = async () => {
     loadingRef.current = true;
     try {
-      const fetchResult = await axios.get(`${baseUrl}/api/spoon/random10`);
-      setInfo((prev) => [...prev, ...fetchResult.data.data.recipes]);
+      const fetchResult = await axios.get(`${baseUrl}/api/spoon/search`);
+      setInfo((prev) => [...prev, ...fetchResult.data.data.results]);
       loadingRef.current = false;
     } catch (error) {
       // change to meaningful error

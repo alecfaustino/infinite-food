@@ -58,3 +58,18 @@
   font-size: 0.9rem;
 }
 
+/* filter button sticky to the bottom of the column.  */
+.filters-actions {
+  position: sticky;
+  bottom: 0;
+  background: white; 
+  padding: 8px 0;
+  text-align: center;
+  z-index: 10;
+}
+
+.filters-actions button {
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+}
