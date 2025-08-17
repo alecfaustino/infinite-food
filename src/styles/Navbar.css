@@ -1,18 +1,18 @@
 .navbar {
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
-  border-bottom: 1px solid #ddd;
+  padding: 8px;
+  margin: 0;
   z-index: 100;
   background-color: white;
 }
 
 .slogan {
-  padding-right: 4rem;
+  /* this margin here is because the navbar has some -32 positiom */
+  margin-right: 1rem;
   display: flex;
 }

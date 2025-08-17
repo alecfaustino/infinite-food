@@ -13,10 +13,11 @@
 
 /* filter button sticky to the bottom of the column.  */
 .filters-actions {
-  position: sticky;
-  bottom: 0;
+  position: relative;
+  bottom: 10px;
   text-align: center;
   z-index: 10;
+  background-color: inherit;
 }
 
 .filters-actions button {

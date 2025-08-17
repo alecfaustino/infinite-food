@@ -3,8 +3,8 @@ import "../styles/Navbar.css";
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <div className="brand">NOMinate</div>
-      <div className="slogan">Dinner ideas, just a scroll away.</div>
+      <h1 className="brand">NOMinate</h1>
+      <h2 className="slogan">Dinner ideas, just a scroll away.</h2>
     </nav>
   );
 };
