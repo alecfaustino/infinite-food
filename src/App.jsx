@@ -5,20 +5,6 @@ import Filters from "./components/Filters";
 import RightColumn from "./components/RightColumn";
 
 function App() {
-  const [recipes, setRecipes] = useState([]);
-  const handleSearch = async () => {
-    try {
-      const query = new URLSearchParams(filters).toString();
-      // TODO CHANGE THE LOCALHOST SO IT'S NOT HARDCODED - PUT INTO .ENV
-      const response = await fetch(
-        `http://localhost:8080/api/spoon/search?${query}`
-      );
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.error("Error fetching recipes:", error);
-    }
-  };
   const [filters, setFilters] = useState({
     cuisine: "",
     diet: [],
@@ -28,15 +14,18 @@ function App() {
     maxCarbs: 500,
     maxFat: 500,
   });
+
+  const [activeFilters, setActiveFilters] = useState({}); // these are the ones actually applied
+
   return (
     <div className="app-container">
       <Filters
         setFilters={setFilters}
         filters={filters}
         className="left-column"
-        handleSearch={handleSearch}
+        setActiveFilters={setActiveFilters}
       />
-      <Cards setFilters={setFilters} />
+      <Cards activeFilters={activeFilters} />
       <RightColumn className="right-column" />
     </div>
   );

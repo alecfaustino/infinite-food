@@ -2,7 +2,13 @@ import { useState } from "react";
 import { cuisines, diets, intolerances } from "../data/filterOptions";
 import "../styles/Filters.css";
 
-const Filters = ({ className, setFilters, filters, handleSearch }) => {
+const Filters = ({
+  className,
+  setFilters,
+  filters,
+  setActiveFilters,
+  handleSearch,
+}) => {
   const handleCuisineChange = (e) => {
     setFilters((prev) => ({ ...prev, cuisine: e.target.value }));
   };
@@ -144,7 +150,7 @@ const Filters = ({ className, setFilters, filters, handleSearch }) => {
 
       {/* Button to apply filters - but it's sticky */}
       <div className="filters-actions">
-        <button onClick={handleSearch}>Apply Filters</button>
+        <button onClick={() => setActiveFilters(filters)}>Apply Filters</button>
       </div>
     </div>
   );

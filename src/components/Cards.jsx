@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "../styles/Cards.css";
 
-const Cards = () => {
+const Cards = ({ activeFilters }) => {
   const [info, setInfo] = useState([]);
   const loadingRef = useRef(false);
   const lastCallRef = useRef(0);
@@ -13,12 +13,15 @@ const Cards = () => {
   const fetchRecipe = async () => {
     loadingRef.current = true;
     try {
-      const fetchResult = await axios.get(`${baseUrl}/api/spoon/search`);
+      const query = new URLSearchParams(activeFilters).toString();
+      const fetchResult = await axios.get(
+        `${baseUrl}/api/spoon/search?${query}`
+      );
       setInfo((prev) => [...prev, ...fetchResult.data.data.results]);
-      loadingRef.current = false;
     } catch (error) {
-      // change to meaningful error
       console.error(error);
+    } finally {
+      loadingRef.current = false;
     }
   };
 
@@ -27,6 +30,7 @@ const Cards = () => {
       const now = Date.now();
       // throttle to prevent loading content too quickly
       if (now - lastCallRef.current < 200) return;
+      lastCallRef.current = now;
       const scrollTop = window.scrollY;
       const windowHeight = window.innerHeight;
       const fullHeight = document.documentElement.scrollHeight;
@@ -38,6 +42,8 @@ const Cards = () => {
     // on initial load, mount the scroll listener to the window object
     window.addEventListener("scroll", handleScroll);
 
+    // when the activefilters change, reset the list
+    setInfo([]);
     // initial fetch on initial load
     fetchRecipe();
 
@@ -45,7 +51,7 @@ const Cards = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [activeFilters]);
 
   return (
     <>
