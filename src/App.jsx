@@ -4,6 +4,7 @@ import Cards from "./components/Cards";
 import Filters from "./components/Filters";
 import Details from "./components/Details";
 import axios from "axios";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [filters, setFilters] = useState({
@@ -49,27 +50,30 @@ function App() {
   };
 
   return (
-    <div className="app-container">
-      <Filters
-        setFilters={setFilters}
-        filters={filters}
-        className="left-column"
-        setActiveFilters={setActiveFilters}
-      />
-      <Cards
-        activeFilters={activeFilters}
-        fetchRecipe={fetchRecipe}
-        info={info}
-        setInfo={setInfo}
-        loadingRef={loadingRef}
-        setSelectedRecipe={setSelectedRecipe}
-      />
-      <Details
-        className="right-column"
-        info={info}
-        selectedRecipe={selectedRecipe}
-      />
-    </div>
+    <>
+      <Navbar />
+      <div className="app-container">
+        <Filters
+          setFilters={setFilters}
+          filters={filters}
+          className="left-column"
+          setActiveFilters={setActiveFilters}
+        />
+        <Cards
+          activeFilters={activeFilters}
+          fetchRecipe={fetchRecipe}
+          info={info}
+          setInfo={setInfo}
+          loadingRef={loadingRef}
+          setSelectedRecipe={setSelectedRecipe}
+        />
+        <Details
+          className="right-column"
+          info={info}
+          selectedRecipe={selectedRecipe}
+        />
+      </div>
+    </>
   );
 }
 

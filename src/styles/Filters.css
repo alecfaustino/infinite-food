@@ -15,8 +15,6 @@
 .filters-actions {
   position: sticky;
   bottom: 0;
-  background: white; 
-  padding: 8px 0;
   text-align: center;
   z-index: 10;
 }
