@@ -43,8 +43,5 @@
 
 /* on mobile, hide the other 2 columns - single column only */
 @media (max-width: 1024px) {
-  .left-column,
-  .right-column {
-    display: none; 
-  }
+
 }

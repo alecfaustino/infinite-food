@@ -10,6 +10,14 @@
   border-radius: 12px;
 }
 
+.left-column {
+  position: sticky;
+  top: 16px; 
+  max-height: calc(100vh - 32px);
+  overflow-y: auto; 
+  padding-right: 8px;
+}
+
 /* on mobile, just a single column (the cards) */
 @media (max-width: 1024px) {
   .app-container {

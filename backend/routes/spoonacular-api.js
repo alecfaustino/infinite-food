@@ -42,4 +42,8 @@ router.get("/random10", async (req, res) => {
   }
 });
 
+// fetch with filters
+
+router.get("/search", async (req, res) => {});
+
 export default router;
