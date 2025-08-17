@@ -1,7 +1,14 @@
 import { useEffect, useRef } from "react";
 import "../styles/Cards.css";
 
-const Cards = ({ activeFilters, fetchRecipe, info, setInfo, loadingRef }) => {
+const Cards = ({
+  activeFilters,
+  fetchRecipe,
+  info,
+  setInfo,
+  loadingRef,
+  setSelectedRecipe,
+}) => {
   const lastCallRef = useRef(0);
   useEffect(() => {
     const handleScroll = () => {
@@ -31,13 +38,21 @@ const Cards = ({ activeFilters, fetchRecipe, info, setInfo, loadingRef }) => {
     };
   }, [activeFilters]);
 
+  const handleRecipeSelect = (id) => {
+    const selected = info.find((recipe) => recipe.id === id);
+    if (selected) setSelectedRecipe(selected);
+  };
+
   return (
     <>
       <div className="cards-container">
         {info.map((food) => {
           const altText = `image of ${food.title}`;
           return (
-            <div className="card" key={food.id}>
+            <div
+              className="card"
+              key={food.id}
+              onClick={() => handleRecipeSelect(food.id)}>
               <img alt={altText} src={food.image} />
               <p>{food.title}</p>
               <p>Ready in {food.readyInMinutes} minutes</p>

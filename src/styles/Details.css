@@ -1,0 +1,51 @@
+.details-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.details-container h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+.details-container p {
+  margin: 6px 0;
+}
+
+.nutrition, .instructions {
+  margin-top: 16px;
+}
+
+.nutrition ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.nutrition li {
+  margin-bottom: 4px;
+}
+
+.instructions ol {
+  padding-left: 20px;
+}
+
+.instructions h5 {
+  margin: 8px 0 4px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* if there is no selected recipe */
+.right-column.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-style: italic;
+  color: #555;
+  text-align: center;
+  padding: 20px;
+}
+

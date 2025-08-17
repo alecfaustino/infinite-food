@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import "./App.css";
 import Cards from "./components/Cards";
 import Filters from "./components/Filters";
-import RightColumn from "./components/RightColumn";
+import Details from "./components/Details";
 import axios from "axios";
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
   const [activeFilters, setActiveFilters] = useState({}); // these are the ones actually applied
   const [info, setInfo] = useState([]);
   const loadingRef = useRef(false);
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
 
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -30,7 +31,6 @@ function App() {
         `${baseUrl}/api/spoon/search?${query}`
       );
       setInfo((prev) => [...prev, ...fetchResult.data.data.results]);
-      console.log(fetchResult.data.data);
       // fetchResult.data.data.results is the base array we are looping through this. Let's call each instance "food"
       // food.description or food.summary
       // food.diets is another array
@@ -62,8 +62,13 @@ function App() {
         info={info}
         setInfo={setInfo}
         loadingRef={loadingRef}
+        setSelectedRecipe={setSelectedRecipe}
       />
-      <RightColumn className="right-column" />
+      <Details
+        className="right-column"
+        info={info}
+        selectedRecipe={selectedRecipe}
+      />
     </div>
   );
 }

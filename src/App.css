@@ -1,6 +1,6 @@
 .app-container {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr; /* middle column is twice as wide */
+  grid-template-columns: 1fr 1.5fr 1fr; 
   gap: 16px;
   padding: 16px;
 }
@@ -17,6 +17,17 @@
   overflow-y: auto; 
   padding-right: 8px;
 }
+
+.right-column {
+  position: sticky;
+  top: 16px;
+  max-height: calc(100vh - 32px);
+  padding-left: 8px;
+  overflow-y: auto;
+}
+
+
+
 
 /* on mobile, just a single column (the cards) */
 @media (max-width: 1024px) {

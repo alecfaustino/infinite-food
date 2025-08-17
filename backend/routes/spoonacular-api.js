@@ -50,7 +50,7 @@ router.get("/search", async (req, res) => {
     const response = await axios.get(`${RECIPES_BASE_URL}/complexSearch`, {
       params: {
         apiKey,
-        number: 10,
+        number: 1,
         addRecipeInformation: true,
         addRecipeInstructions: true,
         addRecipeNutrition: true,
