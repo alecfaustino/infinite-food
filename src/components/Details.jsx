@@ -38,7 +38,7 @@ const Details = ({ selectedRecipe, className }) => {
     <div className={className}>
       <h2>{title}</h2>
       <img src={image} alt={`Image of ${title}`} className="details-image" />
-      <p>
+      <p className="stats">
         Ready in {readyInMinutes} minutes | Servings: {servings}
       </p>
       {diets?.length > 0 && <p>Diets: {diets.join(", ")}</p>}

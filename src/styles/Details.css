@@ -1,12 +1,20 @@
 .details-image {
-  width: 100%;
+  width: 90%;
   height: auto;
   border-radius: 8px;
   margin-bottom: 12px;
+  object-fit: contain;
+  display: flex;
+  justify-self: center;
 }
 
 .nutrition, .instructions {
-  margin-top: 16px;
+  margin: 16px;
+  color: wheat;
+}
+
+.right-column p {
+  color: wheat;
 }
 
 .nutrition ul {
@@ -20,6 +28,7 @@
 
 .instructions ol {
   padding-left: 20px;
+  color: wheat;
 }
 
 .instructions h5 {
@@ -35,7 +44,7 @@
   justify-content: center;
   height: 100%;
   font-style: italic;
-  color: #555;
+  color: white;
   text-align: center;
 }
 

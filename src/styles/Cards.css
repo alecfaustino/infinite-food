@@ -20,7 +20,7 @@
 /* Hover effect for card */
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(255, 193, 7, 0.2);
+  box-shadow: 0 8px 16px rgba(173, 143, 126, 0.2);
 }
 
 /* Card image */
@@ -39,7 +39,7 @@
   font-weight: 500;
   margin: 0;
   text-align: center;
-  color: #FFC107;
+  color: #ad8f7e;
 }
 
 /* on mobile, hide the other 2 columns - single column only */

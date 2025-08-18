@@ -1,44 +1,44 @@
 h3, h4 {
-  color: #FFC107;
+  color: #ad8f7e;
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
 label {
-  color: #EAEAEA;
+  color: wheat;
   cursor: pointer;
 }
 label:hover {
-  color: #FFC107;
+  color: #ad8f7e;
 }
 
 select {
   background: #1C1C1C;
-  color: #EAEAEA;
+  color: wheat;
   border: 1px solid #333;
   padding: 0.4rem 0.6rem;
   border-radius: 6px;
 }
 select:focus {
   outline: none;
-  border-color: #FFC107;
+  border-color: #ad8f7e;
   box-shadow: 0 0 4px #FFC10755;
 }
 
 input[type="checkbox"] {
-  accent-color: #FFC107; 
+  accent-color: #ad8f7e; 
 }
 
 input[type="checkbox"]:checked {
-  background-color: #FFC107;
-  border-color: #FFC107;
+  background-color: #ad8f7e;
+  border-color: #ad8f7e;
 }
 
 
 .macronutrient-slider {
   width: 250px;
   padding: 10px;
-  color: #FFC107;
+  color: #ad8f7e;
 }
 
 .macronutrient-values {
@@ -62,7 +62,7 @@ input[type="checkbox"]:checked {
   padding: 8px 16px;
   font-size: 1rem;
   cursor: pointer;
-  background-color: #FFC107;
+  background-color: #ad8f7e;
   color: black;
   border-radius: 6px;
 }
