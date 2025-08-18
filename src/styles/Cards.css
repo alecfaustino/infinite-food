@@ -9,7 +9,7 @@
 /* Individual card */
 .card {
   aspect-ratio: 4 / 3; 
-  background-color: #fff;
+  background-color: #1C1C1C;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -20,7 +20,7 @@
 /* Hover effect for card */
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(255, 193, 7, 0.2);
 }
 
 /* Card image */
@@ -29,6 +29,7 @@
   height: 75%;
   object-fit: none;
   display: block;
+  background-color: #1C1C1C;
 }
 
 /* Card title */
@@ -38,7 +39,7 @@
   font-weight: 500;
   margin: 0;
   text-align: center;
-  color: #333;
+  color: #FFC107;
 }
 
 /* on mobile, hide the other 2 columns - single column only */
