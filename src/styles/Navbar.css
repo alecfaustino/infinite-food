@@ -32,6 +32,11 @@
 }
 
 /* Show hamburger only on mobile */
+@media (max-width: 430px) {
+  .slogan {
+    display: none;
+  }
+}
 @media (max-width: 1024px) {
   .hamburger {
     display: block;
@@ -48,3 +53,4 @@
   }
 
 }
+
