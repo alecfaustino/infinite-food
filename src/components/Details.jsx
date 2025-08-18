@@ -41,8 +41,10 @@ const Details = ({ selectedRecipe, className, mobileFiltersVisible }) => {
       <p className="stats">
         Ready in {readyInMinutes} minutes | Servings: {servings}
       </p>
-      {diets?.length > 0 && <p>Diets: {diets.join(", ")}</p>}
-      {cuisines?.length > 0 && <p>Cuisines: {cuisines.join(", ")}</p>}
+      {diets?.length > 0 && <p className="stats">Diets: {diets.join(", ")}</p>}
+      {cuisines?.length > 0 && (
+        <p className="stats">Cuisines: {cuisines.join(", ")}</p>
+      )}
 
       {nutrition?.ingredients.length > 0 && (
         <div>
