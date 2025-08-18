@@ -1,7 +1,7 @@
 import "../styles/Details.css";
 
 // selectedRecipe is a single element from the info array. It is an object
-const Details = ({ selectedRecipe, className }) => {
+const Details = ({ selectedRecipe, className, mobileFiltersVisible }) => {
   if (!selectedRecipe) {
     return (
       <div className={`${className} placeholder`}>
@@ -61,7 +61,9 @@ const Details = ({ selectedRecipe, className }) => {
           <h4>Instructions:</h4>
           {analyzedInstructions.map((instructionObj, index) => (
             <div key={index}>
-              {instructionObj.name && <h5>{instructionObj.name}</h5>}
+              {instructionObj.name && (
+                <h5 className="test">{instructionObj.name}</h5>
+              )}
               <ol>
                 {instructionObj.steps.map((step) => (
                   <li key={step.number}>{step.step}</li>

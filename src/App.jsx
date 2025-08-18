@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./App.css";
 import Cards from "./components/Cards";
 import Filters from "./components/Filters";
@@ -16,14 +16,28 @@ function App() {
     maxCarbs: 500,
     maxFat: 500,
   });
-  const [activeFilters, setActiveFilters] = useState({}); // these are the ones actually applied
+  const [activeFilters, setActiveFilters] = useState({});
   const [info, setInfo] = useState([]);
   const loadingRef = useRef(false);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
+  // is for operating the overlays available on mobile - filters on hamburger
+  // state stored here but handled in Navbar when clicking hamburger
+  const [mobileFiltersVisible, setMobileFiltersVisible] = useState(false);
+  // handling conditional rendering for mobile
+  // defaults by evaluating if true or false on <= 1024px
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
 
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
-  // fetching the api to load 10
+  // handle window resize
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 1024);
+    // mount the listener to the window
+    window.addEventListener("resize", handleResize);
+    // clean up remove the listener
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const fetchRecipe = async () => {
     loadingRef.current = true;
     try {
@@ -32,16 +46,6 @@ function App() {
         `${baseUrl}/api/spoon/search?${query}`
       );
       setInfo((prev) => [...prev, ...fetchResult.data.data.results]);
-      // fetchResult.data.data.results is the base array we are looping through this. Let's call each instance "food"
-      // food.description or food.summary
-      // food.diets is another array
-      // food.cuisines is another array
-      // food.readyInMinutes
-      // food.servings
-      // food.nutrition.ingredients is an array of objects that contains id, name, amount, unit, and nutrients
-      // nutrients ^ is another array of objects that contains name (of the nutrient) amount, unit.
-      // we want Carbohydrates, Protein, Calories, Fats
-      // food.analyzedInsturctions is an array of objects containing name, and steps. Steps is an array of objects containing number (the step order), and step (which is the description of the step)
     } catch (error) {
       console.error(error);
     } finally {
@@ -51,14 +55,39 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar
+        mobileFiltersVisible={mobileFiltersVisible}
+        setMobileFiltersVisible={setMobileFiltersVisible}
+      />
+
+      {/* Mobile Filters Overlay */}
+      {mobileFiltersVisible && (
+        <div className="mobile-filters-overlay">
+          <Filters
+            setFilters={setFilters}
+            filters={filters}
+            setActiveFilters={setActiveFilters}
+            className="mobile-filters"
+          />
+          <button
+            className="close-filters"
+            onClick={() => setMobileFiltersVisible(false)}>
+            ✕
+          </button>
+        </div>
+      )}
+
       <div className="app-container">
-        <Filters
-          setFilters={setFilters}
-          filters={filters}
-          className="left-column"
-          setActiveFilters={setActiveFilters}
-        />
+        {/* Desktop Filters */}
+        {!isMobile && (
+          <Filters
+            setFilters={setFilters}
+            filters={filters}
+            className="left-column"
+            setActiveFilters={setActiveFilters}
+          />
+        )}
+
         <Cards
           activeFilters={activeFilters}
           fetchRecipe={fetchRecipe}
@@ -67,12 +96,30 @@ function App() {
           loadingRef={loadingRef}
           setSelectedRecipe={setSelectedRecipe}
         />
-        <Details
-          className="right-column"
-          info={info}
-          selectedRecipe={selectedRecipe}
-        />
+
+        {/* Desktop Details Panel */}
+        {!isMobile && (
+          <Details
+            className="right-column"
+            info={info}
+            selectedRecipe={selectedRecipe}
+          />
+        )}
       </div>
+
+      {/* Mobile Details Modal */}
+      {selectedRecipe && isMobile && (
+        <div className="modal-overlay" onClick={() => setSelectedRecipe(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="close-modal"
+              onClick={() => setSelectedRecipe(null)}>
+              ✕
+            </button>
+            <Details selectedRecipe={selectedRecipe} />
+          </div>
+        </div>
+      )}
     </>
   );
 }

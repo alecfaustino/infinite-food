@@ -8,6 +8,14 @@
   justify-self: center;
 }
 
+.stats {
+  color: wheat;
+}
+
+.test {
+  color: wheat;
+}
+
 .nutrition, .instructions {
   margin: 16px;
   color: wheat;

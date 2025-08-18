@@ -55,8 +55,12 @@ const Cards = ({
               onClick={() => handleRecipeSelect(food.id)}>
               <img alt={altText} src={food.image} />
               <p>{food.title}</p>
-              <p>Ready in {food.readyInMinutes} minutes</p>
-              <p>Servings: {food.servings} servings</p>
+              <p className="mobile-remove">
+                Ready in {food.readyInMinutes} minutes
+              </p>
+              <p className="mobile-remove">
+                Servings: {food.servings} servings
+              </p>
             </div>
           );
         })}

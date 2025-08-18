@@ -20,3 +20,31 @@
 .navbar h1, h2 {
   color: #ad8f7e;
 }
+
+.hamburger {
+  display: none; 
+  margin-right: 1rem;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #ad8f7e;
+  cursor: pointer;
+}
+
+/* Show hamburger only on mobile */
+@media (max-width: 1024px) {
+  .hamburger {
+    display: block;
+  }
+
+  .slogan {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  }
+
+  .brand {
+    font-size: 1.5rem;
+  }
+
+}

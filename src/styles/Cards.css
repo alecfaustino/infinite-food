@@ -42,7 +42,8 @@
   color: #ad8f7e;
 }
 
-/* on mobile, hide the other 2 columns - single column only */
 @media (max-width: 1024px) {
-
+  .mobile-remove {
+    display: none;
+  }
 }
