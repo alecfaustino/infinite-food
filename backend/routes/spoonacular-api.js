@@ -56,6 +56,7 @@ router.get("/search", async (req, res) => {
         addRecipeNutrition: true,
         sort: "random",
         instructionsRequired: true,
+        includeIngredients: true,
         ...req.query,
       },
     });

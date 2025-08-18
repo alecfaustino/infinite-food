@@ -44,6 +44,19 @@ const Details = ({ selectedRecipe, className, mobileFiltersVisible }) => {
       {diets?.length > 0 && <p>Diets: {diets.join(", ")}</p>}
       {cuisines?.length > 0 && <p>Cuisines: {cuisines.join(", ")}</p>}
 
+      {nutrition?.ingredients.length > 0 && (
+        <div>
+          <h4>Ingredients:</h4>
+          <ul>
+            {nutrition.ingredients.map((ingredient, index) => (
+              <li key={ingredient.id} className="test">
+                {ingredient.name} {ingredient.amount} {ingredient.unit}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {nutrition?.nutrients && (
         <div className="nutrition">
           <h4>Nutrients:</h4>
